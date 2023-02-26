@@ -1,21 +1,20 @@
 function brew_install() {
     quiet=false
 
-    while getopts ":q" opt
-    do
+    while getopts ":q" opt; do
         case $opt in
-            q)
-                quiet=true
-                ;;
-            ? )
-                echo "Unrecognized argument"
-                echo "Usage: brew_install -q package_name"
-                return 1
-                ;;
+        q)
+            quiet=true
+            ;;
+        ?)
+            echo "Unrecognized argument"
+            echo "Usage: brew_install -q package_name"
+            return 1
+            ;;
         esac
     done
 
-    shift "$((OPTIND-1))"
+    shift "$((OPTIND - 1))"
     if [ -z "$1" ]; then
         echo "Usage: brew_install [-q] package_name"
     fi
@@ -50,14 +49,4 @@ function bs_cp() {
     fi
 
     test -d "$2" || mkdir -p "$2" && cp "$1" "$2"
-}
-
-# fanqiang is not necessary in tt network
-function not_tt_network() {
-    ssid=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}')
-    if [[ $ssid = *"Bytedance"* ]]; then
-        return 1
-    else
-        return 0
-    fi
 }

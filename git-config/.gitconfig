@@ -19,12 +19,12 @@
     zipHead = !git archive --format=zip HEAD --output
     rmd = !git ls-files -d  -z | xargs -0 git rm
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [log]
     date = local
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = /Users/bytedance/.gitignore_global
     whitespace = cr-at-eol
     quotepath = false
     editor = /usr/local/bin/vim
@@ -44,3 +44,16 @@
     textconv = exiftool
 [diff "plist"]
     textconv = plutil -convert xml1 -o -
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[user]
+	name = caowenbo.0217
+	email = caowenbo.0217@bytedance.com
+[url "ssh://git@code.byted.org/"]
+	insteadOf = https://code.byted.org/

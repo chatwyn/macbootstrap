@@ -33,10 +33,10 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
 # Config Finder
 defaults write com.apple.finder CreateDesktop false
-defaults write com.apple.finder QLEnableTextSelection -boolean true;
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -boolean false;
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -boolean false;
-defaults write com.apple.finder FXEnableExtensionChangeWarning -boolean false;
+defaults write com.apple.finder QLEnableTextSelection -boolean true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -boolean false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -boolean false
+defaults write com.apple.finder FXEnableExtensionChangeWarning -boolean false
 
 # Enable clickpad Tap to click
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -76,6 +76,8 @@ defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Allow full screen mode of simulator
 defaults write com.apple.iphonesimulator AllowFullscreenMode -bool YES
+
+defaults write com.apple.Finder AppleShowAllFiles true
 
 # Make configurations works
 echo "Restart Finder Dock Mail SystemUIServer"

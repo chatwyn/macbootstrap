@@ -140,12 +140,12 @@ function h(){
     cat ~/.macbootstrap/.histfile_color_result | sed '1!G;h;$!d' # 倒序输出，更容易看到第一条
 }
 
-function pt() {
-    launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
-    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
-    export http_proxy=http://localhost:8123
-    export https_proxy=http://localhost:8123
-}
+# function pt() {
+#     launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
+#     launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist
+#     export http_proxy=http://localhost:8123
+#     export https_proxy=http://localhost:8123
+# }
 
 function s() {
     word=$1
@@ -194,9 +194,9 @@ function bsfn () {
     find . \( -type f -or -type l \) | egrep --color=always $1
 }
 
-function bssclient () {
-    nohup sslocal -c ~/.macbootstrap/config/shadowsocks.conf &> $BSTEMP/nohup.out&
-}
+# function bssclient () {
+#     nohup sslocal -c ~/.macbootstrap/config/shadowsocks.conf &> $BSTEMP/nohup.out&
+# }
 
 function c() {
     if [ "$#" -eq 0 ]; then
@@ -223,10 +223,10 @@ function bswhich() {
     fi
 }
 
-function wifipassword () {
-    SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'`
-    security find-generic-password -D "AirPort network password" -a "$SSID" -gw
-}
+# function wifipassword () {
+#     SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'`
+#     security find-generic-password -D "AirPort network password" -a "$SSID" -gw
+# }
 
 # Get resolution of image
 function resolution() {
@@ -240,14 +240,14 @@ function xcodepath() {
 }
 
 # Android
-function aupdate() {
-     cd /tmp/1
-    if [ -e tieba-release.apk  ]; then
-        rm tieba-release.apk
-    fi
-    wget "http://ci.tieba.baidu.com/view/TBPP_Android/job/FC_Native_Android_Build_ICODE/""$1""/artifact/gen_apks/tieba-release.apk"
-    adb install -rg tieba-release.apk
-}
+# function aupdate() {
+#      cd /tmp/1
+#     if [ -e tieba-release.apk  ]; then
+#         rm tieba-release.apk
+#     fi
+#     wget "http://ci.tieba.baidu.com/view/TBPP_Android/job/FC_Native_Android_Build_ICODE/""$1""/artifact/gen_apks/tieba-release.apk"
+#     adb install -rg tieba-release.apk
+# }
 
 function bssync() {
     local from

@@ -1,19 +1,22 @@
+# bytedance
+Host code.byted.org
+    HostName code.byted.org
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa
+    PubkeyAcceptedKeyTypes +ssh-rsa
+    User caowenbo
+
+# github
+Host github.com
+     HostName github.com
+     PreferredAuthentications publickey
+     IdentityFile ~/.ssh/github
+     User caowenbo
+
 Host 10.*
-	GSSAPIAuthentication yes
-	GSSAPIDelegateCredentials no
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
 
-Host *
-	ForwardAgent yes
-	ServerAliveInterval 60
-	ServerAliveCountMax 99999
-	TCPKeepAlive no
-	ControlMaster auto
-	ControlPath ~/.ssh/%h-%p-%r
-	ControlPersist 4h
-	Compression yes
-
-Host qcloud
-	HostName 115.159.123.174
-	User root
-	Port 22
-	IdentityFile ~/.ssh/id_rsa
+# Fig ssh integration. Keep at the bottom of this file.
+Match all
+  Include ~/.fig/ssh
