@@ -29,6 +29,7 @@
     quotepath = false
     editor = /usr/local/bin/vim
     attributesfile = ~/.gitattributes
+	untrackedcache = true
 [i18n]
     commitencoding = utf-8
     logoutputencoding = utf-8
@@ -57,3 +58,5 @@
 	email = caowenbo.0217@bytedance.com
 [url "ssh://git@code.byted.org/"]
 	insteadOf = https://code.byted.org/
+[commit]
+	template = /Users/bytedance/.stCommitMsg

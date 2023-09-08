@@ -144,6 +144,8 @@ backup_file "$old_rc_conf"
 ln -s ~/.macbootstrap/config/ranger/commands.py "$old_commands_py"
 ln -s ~/.macbootstrap/config/ranger/rc.conf "$old_rc_conf"
 
+./install-steps/rvm.sh
+
 ./install-steps/dependencies.before.sh
 
 ./install-steps/dependencies.after.sh
