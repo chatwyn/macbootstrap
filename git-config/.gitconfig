@@ -1,55 +1,55 @@
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
+diff = auto
+status = auto
+branch = auto
+interactive = auto
 [help]
-    format = html
+format = html
 [alias]
-    br = branch
-    ca = commit -a
-    ci = commit
-    co = checkout
-    st = status
-    oln = log --pretty=oneline --since='2 days ago' --color --graph --abbrev-commit
-    olg = log -p -1 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue) <%an>%Creset' --abbrev-commit
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue) <%an>%Creset' --abbrev-commit
-    amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
-    zip = !git archive --format zip master --output
-    zipHead = !git archive --format=zip HEAD --output
-    rmd = !git ls-files -d  -z | xargs -0 git rm
+br = branch
+ca = commit -a
+ci = commit
+co = checkout
+st = status
+oln = log --pretty=oneline --since='2 days ago' --color --graph --abbrev-commit
+olg = log -p -1 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue) <%an>%Creset' --abbrev-commit
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue) <%an>%Creset' --abbrev-commit
+amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+zip = !git archive --format zip master --output
+zipHead = !git archive --format=zip HEAD --output
+rmd = !git ls-files -d -z | xargs -0 git rm
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [log]
-    date = local
+date = local
 [core]
 	excludesfile = /Users/bytedance/.gitignore_global
-    whitespace = cr-at-eol
-    quotepath = false
-    editor = /usr/local/bin/vim
-    attributesfile = ~/.gitattributes
-	untrackedcache = true
+whitespace = cr-at-eol
+quotepath = false
+editor = /usr/local/bin/vim
+attributesfile = ~/.gitattributes
+untrackedcache = true
 [i18n]
-    commitencoding = utf-8
-    logoutputencoding = utf-8
+commitencoding = utf-8
+logoutputencoding = utf-8
 [gui]
-    encoding = utf-8
+encoding = utf-8
 [push]
-    default = current
+default = current
 [branch]
-    autosetupmerge = always
+autosetupmerge = always
 [grep]
-    lineNumber = true
+lineNumber = true
 [diff "exif"]
-    textconv = exiftool
+textconv = exiftool
 [diff "plist"]
-    textconv = plutil -convert xml1 -o -
+textconv = plutil -convert xml1 -o -
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -57,6 +57,17 @@
 	name = caowenbo.0217
 	email = caowenbo.0217@bytedance.com
 [url "ssh://git@code.byted.org/"]
-	insteadOf = https://code.byted.org/
+insteadOf = https://code.byted.org/
 [commit]
 	template = /Users/bytedance/.stCommitMsg
+[trace2]
+normalTarget = /Users/bytedance/.gitlog/log
+normalbrief = true
+	perfTarget = /Users/bytedance/.idevops/git_logs/
+[oh-my-zsh]
+hide-status = 1
+hide-dirty = 1
+[diff]
+renameLimit = 100000
+[lfs]
+	storage = /Users/bytedance/.idevops/git/cache/lfs

@@ -1,33 +1,21 @@
 #!/bin/sh
+cd ~/.macbootstrap
 source basic.sh
 
-if [[ ! -e /Applications/iTerm.app ]]; then
-	brew install iterm2
-	defaults delete com.googlecode.iterm2
-	ln -s ~/.macbootstrap/config/com.googlecode.iterm2.plist $HOME/Library/Preferences
-	# config background image location
-	command="set :New\ Bookmarks:0:Background\ Image\ Location /Users/""$(whoami)""/.macbootstrap/assets/iterm-background.jpg"
-	# Disable Background for performance issue
-	/usr/libexec/PlistBuddy -c "$command" $HOME/Library/Preferences/com.googlecode.iterm2.plist
-	defaults read -app iTerm >/dev/null
-else
-	echo "You have installed iTerm2"
-fi
-
 if [[ ! -e /Applications/SourceTree.app ]]; then
-	brew install sourcetree
+	brew_install sourcetree
 else
 	echo "You have installed SourceTree"
 fi
 
 if [[ ! -e /Applications/WeChat.app ]]; then
-	brew install wechat
+	brew_install wechat
 else
 	echo "You have installed WeChat"
 fi
 
 if [[ ! -e /Applications/Google\ Chrome.app ]]; then
-	brew install google-chrome
+	brew_install google-chrome
 
 	# Set Chrome as default browser
 	git clone https://github.com/kerma/defaultbrowser ./tools/defaultbrowser
@@ -39,7 +27,7 @@ else
 fi
 
 if [[ ! -e /Applications/Visual\ Studio\ Code.app ]]; then
-	brew install visual-studio-code
+	brew_install visual-studio-code
 else
 	echo "You have installed vscode"
 fi
@@ -47,37 +35,36 @@ fi
 if brew ls --versions gnu-sed >/dev/null; then
 	echo "You have installed gsed"
 else
-	brew install gnu-sed
+	brew_install gnu-sed
 fi
 
 # install sz/rz
 if brew ls --versions lrzsz >/dev/null; then
 	echo "You have installed lrzsz"
 else
-	brew install lrzsz
+	brew_install lrzsz
 fi
 
 # install coreutils
 if [[ ! -e /usr/local/opt/coreutils ]]; then
-	brew install coreutils
+	brew_install coreutils
 	cp /usr/local/opt/coreutils/libexec/gnubin/gls /usr/local/opt/coreutils/libexec/gnubin/ls
 else
 	echo "You have installed coreutils"
 fi
 
 # install jetbrain toolbox
-if [[ ! -e /Applications/JetBrains\ Toolbox.app ]]; then
-	brew install jetbrains-toolbox
-else
-	echo "You have installed JetBrains Toolbox"
-fi
+# if [[ ! -e /Applications/JetBrains\ Toolbox.app ]]; then
+# 	brew_install jetbrains-toolbox
+# else
+# 	echo "You have installed JetBrains Toolbox"
+# fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh
-brew install shiftit
-brew install --cask openinterminal
-brew install postman
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-brew install redis
+brew_install --cask openinterminal
+brew_install postman
+brew_install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew_install redis
 brew_install python@3.9
 brew_install cmake
 brew_install gawk
@@ -117,7 +104,6 @@ backup_file ~/.zshrc
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 brew_install autojump
-brew_install fig
 ln -s ~/.macbootstrap/zsh-config/.zshrc ~/.zshrc
 
 # vim configuration

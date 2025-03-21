@@ -1,8 +1,8 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:$M2_HOME/bin
 export LANG=en_US.UTF-8
-plugins=(extract encode64 urltools brew zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(extract encode64 urltools brew zsh-syntax-highlighting zsh-autosuggestions git-open)
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="ys"
@@ -30,7 +30,7 @@ BS_ZSH_TOOLS=${BS_ZSH_BASE}/tools
 
 source $BS_ZSH_BASE/basic.sh
 source $BS_ZSH_BASE/zsh-config/common.sh
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
 if brew ls --versions scmpuff >/dev/null; then
   eval "$(scmpuff init -s --aliases=false)"
 fi
@@ -41,6 +41,10 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
+export GO111MODULE=on
+export GOPROXY="https://go-mod-proxy.byted.org,https://proxy.golang.org,direct"
+export GOPRIVATE="*.byted.org,*.everphoto.cn,git.smartisan.com"
+export GOSUMDB="sum.golang.google.cn"
 
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
@@ -48,11 +52,11 @@ export PATH="/usr/local/sbin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # for nvm
 # export NVM_DIR=~/.nvm
 # export EDITOR="nvim"
-#source $(brew --prefix nvm)/nvm.sh
+# source $(brew --prefix nvm)/nvm.sh
 # export NVM_SH="/usr/local/opt/nvm/nvm.sh"
 # # https://github.com/creationix/nvm/issues/860
 
@@ -67,11 +71,11 @@ export NVM_DIR="$HOME/.nvm"
 autoload -U bashcompinit
 bashcompinit
 
-# if brew list | grep coreutils >/dev/null; then
-#   PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+if brew list | grep coreutils >/dev/null; then
+  PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
 alias ls='ls -F --color=auto'
 eval $(gdircolors -b $HOME/.dir_colors)
-# fi
 
 if [[ -e /usr/local/opt/mysql@5.6/bin/mysql ]]; then
   export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
@@ -82,11 +86,13 @@ alias pi="pod install"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # opam configuration
 # test -r /Users/caowenbo/.opam/opam-init/init.zsh && . /Users/caowenbo/.opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
@@ -104,5 +110,6 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 export OPENAI_KEY="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"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+export PATH="/Users/bytedance/.airbuild/bin":$PATH
+
+eval $(thefuck --alias)
