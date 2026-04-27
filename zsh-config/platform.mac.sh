@@ -214,6 +214,10 @@ function c() {
     fi
 }
 
+function fmt_rs() {
+    git diff --cached --name-only --diff-filter=ACM | grep "\.rs$" | xargs -I {} rustfmt {}
+}
+
 function bswhich() {
     if `type $1 | grep -q 'is a shell function'`; then
         type $1

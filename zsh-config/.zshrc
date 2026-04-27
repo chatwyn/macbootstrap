@@ -1,10 +1,9 @@
 # Fig pre block. Keep at the top of this file.
-
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:$M2_HOME/bin
 export LANG=en_US.UTF-8
 plugins=(extract encode64 urltools brew zsh-syntax-highlighting zsh-autosuggestions git-open)
 ZSH=$HOME/.oh-my-zsh
-
+export PROTOC=/opt/homebrew/bin/protoc
 ZSH_THEME="ys"
 PROMPT='%B%m%~%b$(git_super_status) %# '
 # PROMPT=$'%{$purple%}%n%{$reset_color%} in %{$limegreen%}%~%{$reset_color%}$(ruby_prompt_info " with%{$fg[red]%} " v g "%{$reset_color%}")$vcs_info_msg_0_%{$orange%}%{$reset_color%} at %{$hotpink%}%* %{$orange%}λ%{$reset_color%} '
@@ -38,9 +37,9 @@ fi
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # GO
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
+# export GOPATH=$HOME/go
+# export GOBIN=$GOPATH/bin
+# export PATH=$PATH:$GOBIN
 export GO111MODULE=on
 export GOPROXY="https://go-mod-proxy.byted.org,https://proxy.golang.org,direct"
 export GOPRIVATE="*.byted.org,*.everphoto.cn,git.smartisan.com"
@@ -83,10 +82,10 @@ fi
 
 alias pi="pod install"
 
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -112,4 +111,34 @@ export OPENAI_KEY="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"
 
 export PATH="/Users/bytedance/.airbuild/bin":$PATH
 
-eval $(thefuck --alias)
+export PATH=/opt/homebrew/bin:$PATH
+
+# Python pip packages (auto-detect version)
+export PATH="$(python3 -m site --user-base)/bin:$PATH"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# Added by Antigravity
+export PATH="/Users/bytedance/.antigravity/antigravity/bin:$PATH"
+alias claude="ccr code --dangerously-skip-permissions"
+
+# Added by coco installer
+export PATH="/Users/bytedance/.local/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+# Source - https://stackoverflow.com/a
+# Posted by qafoori, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-01-04, License - CC BY-SA 4.0
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/Users/bytedance/.local/bin:$PATH"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+export PATH="/Users/bytedance/.moss/bin:$PATH"
+# Added by coco installer
+export PATH="/Users/bytedance/.local/bin:$PATH"
